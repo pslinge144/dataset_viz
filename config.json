@@ -1,0 +1,6 @@
+{
+    "datadir": "/media/phil/Extra Drive 1/datasets/train_images",
+    "dataext": "tif"
+    "labeldir": "/media/phil/Extra Drive 1/datasets/train_labels",
+    "labelext": "json"
+}
