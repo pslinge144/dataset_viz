@@ -1,9 +1,23 @@
 import sqlite3
 
 
+DB_NAME = "data.db"
+
+
+def create_database():
+    db = sqlite.connect(DB_NAME)
+    cursor = db.cursor()
+
+    create_cubes_sql = "CREATE TABLE cubes (filename TEXT)"
+    cursor.execute(create_cubes_sql)
+
+    db.commit()
+    db.close()
+
+
 class Database:
     def __init__(self):
-        self.db = "data.db"
+        self.db = DB_NAME
 
     def add_filename(self, filename):
         sql = "INSERT INTO cubes (filename) VALUES (?)"

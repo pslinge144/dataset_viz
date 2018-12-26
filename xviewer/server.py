@@ -1,4 +1,4 @@
-from database in Database
+from xviewer.database import Database
 
 
-database = Database()
+db = Database()
