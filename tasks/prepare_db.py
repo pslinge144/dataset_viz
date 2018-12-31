@@ -6,9 +6,11 @@ from xviewer.database import create_database
 from utils import get_labels
 
 
-CONFIG_FILE = pathlib.Path(__file__).parents[1].resolve() / 'config.json'
+CONFIG_PATH = pathlib.Path(__file__).parents[1].resolve()
+config = CONFIG_PATH / 'config.json'
 
 
-config = json.load(CONFIG_FILE)
+config = json.load(config.open())
 
-print(config)
+_, filenames, _ = get_labels(config["labelfilename"])
+print(set(filenames))

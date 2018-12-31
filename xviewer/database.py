@@ -17,7 +17,8 @@ def create_database():
 
 class Database:
     def __init__(self):
-        self.db = DB_NAME
+        self.db = sqlite.connect(DB_NAME)
+        self.cursor = self.db.cursor()
 
     def add_filename(self, filename):
         sql = "INSERT INTO cubes (filename) VALUES (?)"
@@ -32,17 +33,14 @@ class Database:
         return perform_select(sql, params)
 
     def perform_inset(self, sql, params):
-        conn = sqlite3.connect(self.db)
-        cursor = conn.cursor()
-        cursor.execute(sql, params)
-        conn.commit()
-        conn.close()
+        self.cursor.execute(sql, params)
+        self.db.commit()
 
     def perform_select(self, sql, params):
-        conn = sqlite3.connect(self.db)
-        cursor = conn.cursor()
-        cursor.execute(sql, params)
-        results = cursor.fetchall()
-        conn.close()
+        self.cursor.execute(sql, params)
+        results = self.cursor.fetchall()
 
         return result
+
+    def __del__(self):
+        self.db.close()
