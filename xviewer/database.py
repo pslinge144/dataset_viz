@@ -16,6 +16,10 @@ def create_database():
 
 
 class Database:
+    """
+    The created database will have columns for:
+    ImageName - Thumbnail - Class Map - Class Pixel Count
+    """
     def __init__(self):
         self.db = sqlite.connect(DB_NAME)
         self.cursor = self.db.cursor()
